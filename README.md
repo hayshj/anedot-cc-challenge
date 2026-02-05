@@ -4,7 +4,7 @@ A Next.js application that integrates with the Constant Contact V3 API to manage
 
 ## Demo
 
-Try the live demo: [https://anedot-cc-challenge-2hmmdrjg2-hayden-hays-projects.vercel.app/](https://anedot-cc-challenge-2hmmdrjg2-hayden-hays-projects.vercel.app/)
+Try the live demo: [hhttps://anedot-cc-challenge.vercel.app/](https://anedot-cc-challenge.vercel.app/)
 
 ## Tech Stack
 
