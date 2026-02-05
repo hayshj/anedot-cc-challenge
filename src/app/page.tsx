@@ -38,6 +38,7 @@ type Contact = {
   // SMS channel structure from Constant Contact
   sms_channel?: {
     full_sms_address?: string;
+    sms_address?: string;
     sms_channel_consents?: any[];
   };
 
@@ -339,8 +340,10 @@ function ContactDetails({ contact }: { contact: Contact }) {
   const birthday = formatBirthday(contact.birthday_month, contact.birthday_day);
   const anniversary = contact.anniversary ?? "—";
 
-  // SMS address is inside sms_channel object
-  const smsAddress = contact.sms_channel?.full_sms_address ?? "—";
+  // SMS address is inside sms_channel object (could be full_sms_address or sms_address)
+  const smsAddress = contact.sms_channel?.full_sms_address
+    ?? contact.sms_channel?.sms_address
+    ?? "—";
 
   // Permission to send is inside email_address object
   const permissionToSend = contact.email_address?.permission_to_send ?? "—";
