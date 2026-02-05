@@ -2,6 +2,10 @@
 
 A Next.js application that integrates with the Constant Contact V3 API to manage contacts. This project provides a full-stack solution with a REST API backend and a React frontend for creating, viewing, and managing contacts.
 
+## Demo
+
+Try the live demo: [https://anedot-cc-challenge-2hmmdrjg2-hayden-hays-projects.vercel.app/](https://anedot-cc-challenge-2hmmdrjg2-hayden-hays-projects.vercel.app/)
+
 ## Tech Stack
 
 - **Framework**: Next.js 16 (App Router)
@@ -42,10 +46,15 @@ npm install
 
 ### 3. Create environment file
 
-Create a `.env.local` file in the project root:
+Copy the example environment file and fill in your credentials:
+
+```bash
+cp .env.example .env.local
+```
+
+Then edit `.env.local` with your Constant Contact API credentials:
 
 ```env
-# Constant Contact API Configuration
 CC_BASE_URL=https://api.cc.email/v3
 CC_CLIENT_ID=your_client_id_here
 CC_ACCESS_TOKEN=your_access_token_here
