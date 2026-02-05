@@ -399,7 +399,7 @@ function Field({
       <div
         className={[
           "mt-1 text-gray-900 font-semibold",
-          mono ? "font-mono text-sm font-medium break-words" : "",
+          mono ? "font-mono text-sm font-medium wrap-break-words" : "",
         ].join(" ")}
       >
         {value}
