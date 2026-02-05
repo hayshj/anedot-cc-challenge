@@ -63,11 +63,77 @@ CC_REFRESH_TOKEN=your_refresh_token_here
 
 ### 4. Obtaining Constant Contact Credentials
 
-1. Go to [Constant Contact Developer Portal](https://developer.constantcontact.com/)
-2. Create a new application
-3. Set the redirect URI (e.g., `http://localhost:3000/callback`)
-4. Complete the OAuth flow to obtain your access and refresh tokens
-5. Copy the credentials to your `.env.local` file
+#### Create a Developer Account and App
+
+1. Go to the [Constant Contact Developer Portal](https://developer.constantcontact.com/login/index.html) and create an account
+   - You'll need access to an email inbox to complete verification
+2. After verifying your developer account, create a new application named `developer_test`
+3. When configuring the app:
+   - Click **Device** (grant type / auth flow)
+   - Enable or select **Long-Lived Tokens**
+4. Copy the generated Client ID to your `.env.local` file as `CC_CLIENT_ID`
+
+#### Get Access and Refresh Tokens (Device Flow)
+
+**Step 1: Request a device code**
+
+```bash
+curl --location --request POST \
+  "https://authz.constantcontact.com/oauth2/default/v1/device/authorize" \
+  --header "Content-Type: application/x-www-form-urlencoded" \
+  --header "Accept: application/json" \
+  --data-urlencode "client_id=YOUR_CLIENT_ID_HERE" \
+  --data-urlencode "scope=contact_data offline_access"
+```
+
+You'll receive a response like:
+
+```json
+{
+  "device_code": "abc123",
+  "user_code": "WXYZ-9999",
+  "verification_uri_complete": "https://authz.constantcontact.com/activate?user_code=WXYZ-9999",
+  "expires_in": 600
+}
+```
+
+**Step 2: Authorize in browser**
+
+Open the `verification_uri_complete` URL in your browser, log in, and approve the app.
+
+**Step 3: Exchange device code for tokens**
+
+```bash
+curl --location --request POST \
+  "https://authz.constantcontact.com/oauth2/default/v1/token" \
+  --header "Content-Type: application/x-www-form-urlencoded" \
+  --header "Accept: application/json" \
+  --data-urlencode "client_id=YOUR_CLIENT_ID_HERE" \
+  --data-urlencode "device_code=DEVICE_CODE_FROM_STEP_1" \
+  --data-urlencode "grant_type=urn:ietf:params:oauth:grant-type:device_code"
+```
+
+You'll receive your tokens:
+
+```json
+{
+  "access_token": "eyJhbGciOiJIUzI1NiIs...",
+  "refresh_token": "def456...",
+  "expires_in": 3600,
+  "token_type": "Bearer"
+}
+```
+
+**Step 4: Update .env.local**
+
+Add the tokens to your `.env.local` file:
+
+```env
+CC_BASE_URL=https://api.cc.email/v3
+CC_CLIENT_ID=your_client_id
+CC_ACCESS_TOKEN=eyJhbGciOiJIUzI1NiIs...
+CC_REFRESH_TOKEN=def456...
+```
 
 ### 5. Run the development server
 
