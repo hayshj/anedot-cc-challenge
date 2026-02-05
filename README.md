@@ -34,7 +34,7 @@ Before you begin, ensure you have:
 ### 1. Clone the repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/hayshj/anedot-cc-challenge
 cd anedot-cc-challenge
 ```
 
