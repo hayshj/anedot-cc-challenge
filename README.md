@@ -4,7 +4,7 @@ A Next.js application that integrates with the Constant Contact V3 API to manage
 
 ## Demo
 
-Try the live demo: [hhttps://anedot-cc-challenge.vercel.app/](https://anedot-cc-challenge.vercel.app/)
+Try the live demo: [https://anedot-cc-challenge.vercel.app/](https://anedot-cc-challenge.vercel.app/)
 
 ## Tech Stack
 
@@ -219,16 +219,6 @@ Fetch a single contact by ID.
 
 ```bash
 curl "http://localhost:3000/api/contacts/04fe9a-a579-43c5-bb1a-58ed29bf0a6a?include=phone_numbers,street_addresses"
-```
-
-#### `DELETE /api/contacts/:id`
-
-Delete a contact (soft delete).
-
-**Example:**
-
-```bash
-curl -X DELETE "http://localhost:3000/api/contacts/04fe9a-a579-43c5-bb1a-58ed29bf0a6a"
 ```
 
 ## Frontend Pages
